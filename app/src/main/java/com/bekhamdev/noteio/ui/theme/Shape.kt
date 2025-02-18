@@ -4,7 +4,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp
 
 data class Shapes(
-    val small: RoundedCornerShape = RoundedCornerShape(4.dp),
-    val medium: RoundedCornerShape = RoundedCornerShape(4.dp),
-    val large: RoundedCornerShape = RoundedCornerShape(0.dp)
+    val small: RoundedCornerShape,
+    val medium: RoundedCornerShape,
+    val large: RoundedCornerShape,
+)
+
+val shapes = Shapes(
+    small = RoundedCornerShape(4.dp),
+    medium = RoundedCornerShape(4.dp),
+    large = RoundedCornerShape(0.dp),
 )
