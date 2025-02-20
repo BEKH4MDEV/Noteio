@@ -3,8 +3,6 @@ package com.bekhamdev.noteio.feature_note.presentation.notes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bekhamdev.noteio.core.feature_note.domain.util.NoteOrder
-import com.bekhamdev.noteio.core.feature_note.domain.util.OrderType
-import com.bekhamdev.noteio.core.feature_note.domain.util.onError
 import com.bekhamdev.noteio.core.feature_note.domain.util.onSuccess
 import com.bekhamdev.noteio.feature_note.domain.mapper.toNoteUi
 import com.bekhamdev.noteio.feature_note.domain.useCase.NoteUseCases
@@ -12,10 +10,8 @@ import com.bekhamdev.noteio.feature_note.presentation.mapper.toNote
 import com.bekhamdev.noteio.feature_note.presentation.model.NoteUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -41,9 +37,6 @@ class NotesViewModel @Inject constructor(
             initialValue = _state.value
         )
 
-    private val _events = MutableSharedFlow<NotesEvent>()
-    val events = _events.asSharedFlow()
-
     private var recentlyDeletedNote: NoteUi? = null
     private var getNotesJob: Job? = null
 
@@ -51,10 +44,9 @@ class NotesViewModel @Inject constructor(
         when(intent) {
             is NotesIntent.Order -> {
                 if (_state.value.noteOrder::class != intent.noteOrder::class ||
-                    getOrderType(_state.value.noteOrder) != getOrderType(intent.noteOrder)) {
+                    _state.value.noteOrder.currentOrderType() != intent.noteOrder.currentOrderType()) {
                     getNotes(intent.noteOrder)
                 }
-
             }
             is NotesIntent.DeleteNote -> {
                 viewModelScope.launch {
@@ -69,15 +61,20 @@ class NotesViewModel @Inject constructor(
                         .onSuccess {
                             recentlyDeletedNote = null
                         }
-                        .onError {
-                            _events.emit(NotesEvent.Error(it))
-                        }
                 }
             }
             NotesIntent.ToggleOrderSection -> {
                 _state.update {
                     it.copy(
                         isOrderSectionVisible = !it.isOrderSectionVisible
+                    )
+                }
+            }
+
+            is NotesIntent.ClickNote -> {
+                _state.update {
+                    it.copy(
+                        selectedNote = intent.note
                     )
                 }
             }
@@ -99,13 +96,5 @@ class NotesViewModel @Inject constructor(
                 }
             }
             .launchIn(viewModelScope)
-    }
-
-    private fun getOrderType(noteOrder: NoteOrder): OrderType {
-        return when (noteOrder) {
-            is NoteOrder.Date -> noteOrder.orderType
-            is NoteOrder.Title -> noteOrder.orderType
-            is NoteOrder.Color -> noteOrder.orderType
-        }
     }
 }

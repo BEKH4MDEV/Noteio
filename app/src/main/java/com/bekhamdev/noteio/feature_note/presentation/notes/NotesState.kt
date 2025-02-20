@@ -7,5 +7,6 @@ import com.bekhamdev.noteio.feature_note.presentation.model.NoteUi
 data class NotesState(
     val notes: List<NoteUi> = emptyList(),
     val noteOrder: NoteOrder = NoteOrder.Date(OrderType.Descending),
-    val isOrderSectionVisible: Boolean = false
+    val isOrderSectionVisible: Boolean = false,
+    val selectedNote: NoteUi? = null
 )

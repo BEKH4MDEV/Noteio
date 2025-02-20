@@ -37,9 +37,9 @@ class GetNotesUseCase @Inject constructor(
 
                     is NoteOrder.Color -> {
                         if (noteOrder.orderType == OrderType.Ascending) {
-                            notes.sortedBy { it.color.index }
+                            notes.sortedBy { it.colorIndex }
                         } else {
-                            notes.sortedByDescending { it.color.index }
+                            notes.sortedByDescending { it.colorIndex }
                         }
                     }
                 }

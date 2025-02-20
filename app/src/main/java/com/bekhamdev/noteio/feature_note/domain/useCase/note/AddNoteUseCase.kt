@@ -9,11 +9,8 @@ class AddNoteUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
     suspend operator fun invoke(note: Note): Result<Unit, String> {
-        if (note.title.isBlank()) {
-            return Result.Error("The title of the note can't be empty.")
-        }
-        if (note.content.isBlank()) {
-            return Result.Error("The content of the note can't be empty.")
+        if (note.title.isBlank() || note.content.isBlank()) {
+            return Result.Error("Empty fields are not allowed")
         }
         return Result.Success(repository.insertNote(note))
     }

@@ -1,5 +1,6 @@
 package com.bekhamdev.noteio.feature_note.presentation.mapper
 
+import com.bekhamdev.noteio.core.feature_note.domain.util.noteColors
 import com.bekhamdev.noteio.feature_note.domain.model.Note
 import com.bekhamdev.noteio.feature_note.presentation.model.NoteUi
 
@@ -9,6 +10,6 @@ fun NoteUi.toNote(): Note {
         title = title,
         content = content,
         timestamp = System.currentTimeMillis(),
-        color = color
+        colorIndex = noteColors.indexOf(color)
     )
 }
