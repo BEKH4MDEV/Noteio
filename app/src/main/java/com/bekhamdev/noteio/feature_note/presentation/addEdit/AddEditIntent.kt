@@ -7,7 +7,7 @@ sealed interface AddEditIntent {
         val id: Long?,
         val title: String,
         val content: String,
-        val color: Color
+        val color: Color,
     ): AddEditIntent
 
     data class ChangeColor(val color: Color): AddEditIntent

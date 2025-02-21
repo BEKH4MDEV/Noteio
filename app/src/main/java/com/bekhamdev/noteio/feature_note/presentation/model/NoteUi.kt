@@ -6,5 +6,6 @@ data class NoteUi(
     val id: Long,
     val title: String,
     val content: String,
+    val timestamp: Long? = null,
     val color: Color
 )

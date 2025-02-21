@@ -9,7 +9,7 @@ fun NoteUi.toNote(): Note {
         id = id,
         title = title,
         content = content,
-        timestamp = System.currentTimeMillis(),
+        timestamp = timestamp ?: System.currentTimeMillis(),
         colorIndex = noteColors.indexOf(color)
     )
 }

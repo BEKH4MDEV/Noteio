@@ -9,9 +9,14 @@ class AddNoteUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
     suspend operator fun invoke(note: Note): Result<Unit, String> {
-        if (note.title.isBlank() || note.content.isBlank()) {
+        val title = note.title.trim { it.isWhitespace() }
+        val content = note.content.trim { it.isWhitespace() }
+        if (title.isBlank() || content.isBlank()) {
             return Result.Error("Empty fields are not allowed")
         }
-        return Result.Success(repository.insertNote(note))
+        return Result.Success(repository.insertNote(note.copy(
+            title = title,
+            content = content
+        )))
     }
 }

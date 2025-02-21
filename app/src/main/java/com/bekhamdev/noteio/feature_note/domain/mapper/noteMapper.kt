@@ -20,6 +20,7 @@ fun Note.toNoteUi(): NoteUi {
         id = id,
         title = title,
         content = content,
+        timestamp = timestamp,
         color = noteColors.getOrElse(colorIndex) { noteColors.first() }
     )
 }
