@@ -4,6 +4,6 @@ import androidx.compose.ui.graphics.Color
 import com.bekhamdev.noteio.core.feature_note.domain.util.noteColors
 
 data class AddEditState(
-    val color: Color = noteColors.first(),
+    val color: Color = noteColors.random(),
     val changed: Boolean = false
 )
