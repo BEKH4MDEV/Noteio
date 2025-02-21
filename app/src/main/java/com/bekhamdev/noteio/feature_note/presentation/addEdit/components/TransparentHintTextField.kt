@@ -5,7 +5,6 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 
@@ -32,8 +31,8 @@ fun TransparentHintTextField(
                 Text(
                     text = hint,
                     style = textStyle,
-                    color = Color.DarkGray.copy(
-                        alpha = 0.8f
+                    color = textStyle.color.copy(
+                        alpha = .7f
                     )
                 )
             } else {

@@ -1,6 +1,5 @@
 package com.bekhamdev.noteio.feature_note.presentation.addEdit
 
-import android.annotation.SuppressLint
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -11,7 +10,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,10 +44,9 @@ import com.bekhamdev.noteio.core.feature_note.domain.util.noteColors
 import com.bekhamdev.noteio.core.feature_note.presentation.util.getInsetsData
 import com.bekhamdev.noteio.feature_note.presentation.addEdit.components.TransparentHintTextField
 import com.bekhamdev.noteio.feature_note.presentation.model.NoteUi
-import com.bekhamdev.noteio.ui.theme.DarkGray
+import com.bekhamdev.noteio.ui.theme.surfaceBrightDark
 import kotlinx.coroutines.launch
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun AddEditScreen(
     note: NoteUi?,
@@ -76,6 +75,7 @@ fun AddEditScreen(
                     ))
                 },
                 containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.padding(
                     end = insets.paddingValues.calculateRightPadding(LayoutDirection.Ltr)
                 )
@@ -88,15 +88,17 @@ fun AddEditScreen(
         },
         snackbarHost = {
             SnackbarHost(snackbarHostState)
-        },
-        contentWindowInsets = WindowInsets(0,0,0,0),
-    ) {
+        }
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .background(noteBackgroundAnimatable.value)
                 .padding(
-                    insets.paddingValues
+                    top = insets.paddingValues.calculateTopPadding(),
+                    start = insets.paddingValues.calculateStartPadding(LayoutDirection.Ltr),
+                    end = insets.paddingValues.calculateEndPadding(LayoutDirection.Ltr)
                 )
+                .padding(bottom = innerPadding.calculateBottomPadding())
                 .fillMaxSize()
                 .padding(
                     start = if (insets.paddingValues.calculateLeftPadding(LayoutDirection.Ltr) >
@@ -147,11 +149,11 @@ fun AddEditScreen(
                     title = it
                 },
                 singleLine = true,
-                textStyle = MaterialTheme.typography.headlineMedium.copy(
-                    color = DarkGray.copy(
+                textStyle = MaterialTheme.typography.headlineLarge.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = surfaceBrightDark.copy(
                         alpha = .9f
-                    ),
-                    fontWeight = FontWeight.Bold
+                    )
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -161,8 +163,8 @@ fun AddEditScreen(
                 onTextChange = {
                     content = it
                 },
-                textStyle = MaterialTheme.typography.bodyLarge.copy(
-                    color = DarkGray.copy(
+                textStyle = MaterialTheme.typography.titleLarge.copy(
+                    color = surfaceBrightDark.copy(
                         alpha = .9f
                     )
                 ),

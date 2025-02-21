@@ -14,10 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NoteioTheme(
-                dynamicColor = false,
-                darkTheme = true
-            ) {
+            NoteioTheme {
                 Nav()
             }
         }

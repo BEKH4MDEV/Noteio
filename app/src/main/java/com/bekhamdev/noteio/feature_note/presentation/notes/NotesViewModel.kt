@@ -63,14 +63,6 @@ class NotesViewModel @Inject constructor(
                         }
                 }
             }
-            NotesIntent.ToggleOrderSection -> {
-                _state.update {
-                    it.copy(
-                        isOrderSectionVisible = !it.isOrderSectionVisible
-                    )
-                }
-            }
-
             is NotesIntent.ClickNote -> {
                 _state.update {
                     it.copy(
