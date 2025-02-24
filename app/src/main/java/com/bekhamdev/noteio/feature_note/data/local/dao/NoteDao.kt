@@ -2,9 +2,8 @@ package com.bekhamdev.noteio.feature_note.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Upsert
 import com.bekhamdev.noteio.feature_note.data.local.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -19,8 +18,6 @@ interface NoteDao {
     @Delete
     suspend fun deleteNote(note: NoteEntity)
 
-    @Insert(
-        onConflict = OnConflictStrategy.REPLACE
-    )
-    suspend fun insertNote(note: NoteEntity)
+    @Upsert
+    suspend fun insertNote(note: NoteEntity): Long
 }

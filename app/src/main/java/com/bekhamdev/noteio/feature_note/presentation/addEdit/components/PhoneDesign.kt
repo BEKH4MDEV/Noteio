@@ -117,7 +117,7 @@ fun PhoneDesign(
                     )
                 ),
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Done
+                    imeAction = ImeAction.Next
                 ),
                 scrollState = scrollState,
                 parentYInRoot = parentYInRoot
@@ -133,7 +133,7 @@ fun PhoneDesign(
                     )
                 ),
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Done
+                    imeAction = ImeAction.Default
                 ),
                 focusRequester = focusRequester,
                 scrollState = scrollState,

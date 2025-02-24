@@ -20,12 +20,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
+import com.bekhamdev.noteio.core.feature_note.presentation.util.tintedIconPainter
 import com.bekhamdev.noteio.feature_note.presentation.model.NoteUi
 import com.bekhamdev.noteio.ui.theme.surfaceBrightDark
 import me.saket.swipe.SwipeAction
@@ -39,9 +39,11 @@ fun NoteItem(
     cutCornerSize: Dp = 30.dp,
     onDeleteClick: () -> Unit
 ) {
+
     val delete = SwipeAction(
-        icon = rememberVectorPainter(
-            image = Icons.Default.Delete
+        icon = tintedIconPainter(
+            imageVector = Icons.Default.Delete,
+            tintColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         background = Color.Red.copy(
             alpha = .7f
@@ -53,7 +55,7 @@ fun NoteItem(
         endActions = listOf(
             delete
         ),
-        swipeThreshold = 150.dp,
+        swipeThreshold = 100.dp,
         backgroundUntilSwipeThreshold = Color.Transparent
     ) {
         Box(
@@ -111,27 +113,33 @@ fun NoteItem(
                     .padding(16.dp)
                     .padding(end = 32.dp)
             ) {
-                Text(
-                    text = note.title,
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontWeight = FontWeight.Bold
-                    ),
-                    color = surfaceBrightDark.copy(
-                        alpha = .9f
-                    ),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = note.content,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = surfaceBrightDark.copy(
-                        alpha = .9f
-                    ),
-                    maxLines = 10,
-                    overflow = TextOverflow.Ellipsis
-                )
+                if (note.title.isNotEmpty()) {
+                    Text(
+                        text = note.title,
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = surfaceBrightDark.copy(
+                            alpha = .9f
+                        ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                if (note.title.isNotEmpty() && note.content.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                if (note.content.isNotEmpty()) {
+                    Text(
+                        text = note.content,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = surfaceBrightDark.copy(
+                            alpha = .9f
+                        ),
+                        maxLines = 10,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
         }
     }

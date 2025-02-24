@@ -1,5 +1,7 @@
 package com.bekhamdev.noteio.feature_note.presentation.addEdit
 
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -17,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +30,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import com.bekhamdev.noteio.core.feature_note.presentation.util.ExitType
 import com.bekhamdev.noteio.core.feature_note.presentation.util.getInsetsData
 import com.bekhamdev.noteio.feature_note.presentation.addEdit.components.PhoneDesign
 import com.bekhamdev.noteio.feature_note.presentation.model.NoteUi
@@ -40,7 +46,7 @@ fun AddEditScreen(
     snackbarHostState: SnackbarHostState,
 ) {
     val scope = rememberCoroutineScope()
-    var title by remember { mutableStateOf(TextFieldValue(note?.title ?: ""))}
+    var title by remember { mutableStateOf(TextFieldValue(note?.title ?: "")) }
     var content by remember { mutableStateOf(TextFieldValue(note?.content ?: "")) }
     val insets = getInsetsData()
     val noteBackgroundAnimatable = remember {
@@ -59,6 +65,7 @@ fun AddEditScreen(
                             id = note?.id,
                             title = title.text,
                             content = content.text,
+                            timestamp = if (note?.title != title.text || note.content != content.text || note.color != noteBackgroundAnimatable.value) null else note.timestamp,
                             color = noteBackgroundAnimatable.value
                         )
                     )
@@ -114,5 +121,40 @@ fun AddEditScreen(
                 noteColor = noteColor
             )
         }
+    }
+
+    val activityLifecycleOwner = LocalOnBackPressedDispatcherOwner.current
+    DisposableEffect(activityLifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_STOP) {
+                onIntent(
+                    AddEditIntent.SaveNote(
+                        id = note?.id,
+                        title = title.text,
+                        content = content.text,
+                        color = noteBackgroundAnimatable.value,
+                        timestamp = if (note?.title != title.text || note.content != content.text || note.color != noteBackgroundAnimatable.value) null else note.timestamp,
+                        exitType = ExitType.BACKGROUND
+                    )
+                )
+            }
+        }
+        activityLifecycleOwner?.lifecycle?.addObserver(observer)
+        onDispose {
+            activityLifecycleOwner?.lifecycle?.removeObserver(observer)
+        }
+    }
+
+    BackHandler {
+        onIntent(
+            AddEditIntent.SaveNote(
+                id = note?.id,
+                title = title.text,
+                content = content.text,
+                color = noteBackgroundAnimatable.value,
+                timestamp = if (note?.title != title.text || note.content != content.text || note.color != noteBackgroundAnimatable.value) null else note.timestamp,
+                exitType = ExitType.BACK
+            )
+        )
     }
 }
