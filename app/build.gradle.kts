@@ -72,12 +72,14 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
     //splash
-    implementation (libs.androidx.core.splashscreen)
+    implementation(libs.androidx.core.splashscreen)
     //Room
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     //Navigation
     implementation(libs.androidx.navigation.compose)
-    implementation (libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.json)
+    //Window Size Class
+    implementation(libs.compose.material3.window.size)
 }

@@ -26,7 +26,10 @@ fun Nav(
     val navController = rememberNavController()
     val state by notesViewModel.state.collectAsStateWithLifecycle()
 
-    NavHost(navController = navController, startDestination = Route.NotesScreen) {
+    NavHost(
+        navController = navController,
+        startDestination = Route.NotesScreen
+    ) {
         composable<Route.NotesScreen> {
             NotesScreen(
                 state = state,

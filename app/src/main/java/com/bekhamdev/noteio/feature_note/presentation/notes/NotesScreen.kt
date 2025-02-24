@@ -90,12 +90,7 @@ fun NotesScreen(
                     start = insets.paddingValues.calculateStartPadding(LayoutDirection.Ltr),
                     end = insets.paddingValues.calculateEndPadding(LayoutDirection.Ltr)
                 )
-                .padding(
-                    start = if (insets.paddingValues.calculateLeftPadding(LayoutDirection.Ltr) >
-                        0.dp) 0.dp else 16.dp,
-                    end = if (insets.paddingValues.calculateRightPadding(LayoutDirection.Ltr) >
-                        0.dp) 0.dp else 16.dp,
-                )
+                .padding(horizontal = 16.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.End
         ) {
@@ -175,7 +170,7 @@ fun NotesScreen(
                         }
                     }
                 }
-                itemsIndexed(state.notes, key = { _, note -> note.id }) {index, note ->
+                itemsIndexed(state.notes, key = { _, note -> note.id }) { index, note ->
                     NoteItem(
                         note = note,
                         modifier = Modifier

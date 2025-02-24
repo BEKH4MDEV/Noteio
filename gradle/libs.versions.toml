@@ -17,6 +17,7 @@ navigationCompose = "2.8.7"
 roomRuntime = "2.6.1"
 uiTextGoogleFonts = "1.7.8"
 swipe = "1.3.0"
+windowSizeClass = "1.3.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +47,8 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 swipe = { module = "me.saket.swipe:swipe", version.ref = "swipe" }
+compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "windowSizeClass" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
