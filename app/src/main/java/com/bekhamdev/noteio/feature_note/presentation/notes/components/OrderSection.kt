@@ -21,7 +21,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.PopupProperties
 import com.bekhamdev.noteio.core.feature_note.domain.util.NoteOrder
 import com.bekhamdev.noteio.core.feature_note.domain.util.OrderType
 

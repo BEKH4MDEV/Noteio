@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -24,6 +26,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,9 +49,28 @@ fun AddEditScreen(
     noteColor: Color,
     snackbarHostState: SnackbarHostState,
 ) {
+    val textFieldValueSaver = remember {
+        mapSaver(
+            save = { textFieldValue ->
+                mapOf(
+                    "text" to textFieldValue.text,
+                )
+            },
+            restore = { savedMap ->
+                TextFieldValue(
+                    text = savedMap["text"] as String
+                )
+            }
+        )
+    }
+
     val scope = rememberCoroutineScope()
-    var title by remember { mutableStateOf(TextFieldValue(note?.title ?: "")) }
-    var content by remember { mutableStateOf(TextFieldValue(note?.content ?: "")) }
+    var title by rememberSaveable(stateSaver = textFieldValueSaver) {
+        mutableStateOf(TextFieldValue(note?.title ?: ""))
+    }
+    var content by rememberSaveable(stateSaver = textFieldValueSaver) {
+        mutableStateOf(TextFieldValue(note?.content ?: ""))
+    }
     val insets = getInsetsData()
     val noteBackgroundAnimatable = remember {
         Animatable(
@@ -83,7 +106,14 @@ fun AddEditScreen(
             }
         },
         snackbarHost = {
-            SnackbarHost(snackbarHostState)
+            SnackbarHost(snackbarHostState) {
+                Snackbar(
+                    snackbarData = it,
+                    shape = CircleShape,
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    contentColor = MaterialTheme.colorScheme.primaryContainer
+                )
+            }
         }
     ) { innerPadding ->
         Column(

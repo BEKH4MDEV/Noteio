@@ -103,7 +103,7 @@ fun PhoneDesign(
                 .verticalScroll(scrollState)
                 .imePadding()
         ) {
-            val focusRequester = remember { FocusRequester() }
+            val focusContentRequester = remember { FocusRequester() }
             val keyboardController = LocalSoftwareKeyboardController.current
             TransparentHintTextField(
                 text = title,
@@ -120,7 +120,7 @@ fun PhoneDesign(
                     imeAction = ImeAction.Next
                 ),
                 scrollState = scrollState,
-                parentYInRoot = parentYInRoot
+                parentYInRoot = parentYInRoot,
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
@@ -135,16 +135,16 @@ fun PhoneDesign(
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Default
                 ),
-                focusRequester = focusRequester,
+                focusRequester = focusContentRequester,
                 scrollState = scrollState,
-                parentYInRoot = parentYInRoot
+                parentYInRoot = parentYInRoot,
             )
             Spacer(
                 modifier = Modifier
                     .pointerInput(Unit) {
                         detectTapGestures(
                             onTap = {
-                                focusRequester.requestFocus()
+                                focusContentRequester.requestFocus()
                                 keyboardController?.show()
                             }
                         )
