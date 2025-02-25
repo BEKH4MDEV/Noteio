@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
@@ -56,6 +57,7 @@ fun Nav(
             val addEditState by addEditViewModel.state.collectAsStateWithLifecycle()
             val snackbarHostState = remember { SnackbarHostState() }
             val scope = rememberCoroutineScope()
+            val context = LocalContext.current
             ObserveAsEvents(
                 events = addEditViewModel.event,
             ) {
@@ -63,7 +65,7 @@ fun Nav(
                     is AddEditEvent.Error -> {
                         if (snackbarHostState.currentSnackbarData == null) {
                             scope.launch {
-                                snackbarHostState.showSnackbar(it.message)
+                                snackbarHostState.showSnackbar(context.getString(it.message))
                             }
                         }
                     }

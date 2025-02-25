@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Noteio</string>
+    <!-- Home -->
+    <string name="home_title">आपके नोट्स</string>
+    <string name="home_no_notes">कोई नोट नहीं मिला</string>
+    <string name="home_note_deleted">नोट हटा दिया गया</string>
+    <string name="home_note_restore_action">पूर्ववत करें</string>
+    <!-- Sort By -->
+    <string name="sort_by_title">शीर्षक</string>
+    <string name="sort_by_date">तारीख</string>
+    <string name="sort_by_color">रंग</string>
+    <!-- Order By -->
+    <string name="order_by_ascending">आरोही</string>
+    <string name="order_by_descending">अवरोही</string>
+    <!-- AddEditNote -->
+    <string name="title_placeholder">एक शीर्षक चुनें</string>
+    <string name="content_placeholder">कुछ सामग्री दर्ज करें</string>
+    <string name="AddEditNote_error">कम से कम एक फ़ील्ड आवश्यक है</string>
+    <!-- Buttons -->
+    <string name="add_note">नोट जोड़ें</string>
+    <string name="sort_notes">नोट छांटें</string>
+    <string name="save_note">नोट सहेजें</string>
+</resources>

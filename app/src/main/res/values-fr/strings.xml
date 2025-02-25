@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Noteio</string>
+    <!-- Home -->
+    <string name="home_title">Vos Notes</string>
+    <string name="home_no_notes">Aucune note trouvée</string>
+    <string name="home_note_deleted">Note supprimée</string>
+    <string name="home_note_restore_action">Annuler</string>
+    <!-- Sort By -->
+    <string name="sort_by_title">Titre</string>
+    <string name="sort_by_date">Date</string>
+    <string name="sort_by_color">Couleur</string>
+    <!-- Order By -->
+    <string name="order_by_ascending">Croissant</string>
+    <string name="order_by_descending">Décroissant</string>
+    <!-- AddEditNote -->
+    <string name="title_placeholder">Choisissez un titre</string>
+    <string name="content_placeholder">Entrez du contenu</string>
+    <string name="AddEditNote_error">Au moins un champ est requis</string>
+    <!-- Buttons -->
+    <string name="add_note">Ajouter une note</string>
+    <string name="sort_notes">Trier les notes</string>
+    <string name="save_note">Enregistrer la note</string>
+</resources>

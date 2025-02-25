@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Noteio</string>
+    <!-- Home -->
+    <string name="home_title">Ваши заметки</string>
+    <string name="home_no_notes">Заметки не найдены</string>
+    <string name="home_note_deleted">Заметка удалена</string>
+    <string name="home_note_restore_action">Отменить</string>
+    <!-- Sort By -->
+    <string name="sort_by_title">Название</string>
+    <string name="sort_by_date">Дата</string>
+    <string name="sort_by_color">Цвет</string>
+    <!-- Order By -->
+    <string name="order_by_ascending">По возрастанию</string>
+    <string name="order_by_descending">По убыванию</string>
+    <!-- AddEditNote -->
+    <string name="title_placeholder">Выберите название</string>
+    <string name="content_placeholder">Введите текст</string>
+    <string name="AddEditNote_error">Требуется хотя бы одно поле</string>
+    <!-- Buttons -->
+    <string name="add_note">Добавить заметку</string>
+    <string name="sort_notes">Сортировать заметки</string>
+    <string name="save_note">Сохранить заметку</string>
+</resources>

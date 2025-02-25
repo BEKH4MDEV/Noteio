@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Noteio</string>
+    <!-- Home -->
+    <string name="home_title">你的笔记</string>
+    <string name="home_no_notes">未找到笔记</string>
+    <string name="home_note_deleted">笔记已删除</string>
+    <string name="home_note_restore_action">撤销</string>
+    <!-- Sort By -->
+    <string name="sort_by_title">标题</string>
+    <string name="sort_by_date">日期</string>
+    <string name="sort_by_color">颜色</string>
+    <!-- Order By -->
+    <string name="order_by_ascending">升序</string>
+    <string name="order_by_descending">降序</string>
+    <!-- AddEditNote -->
+    <string name="title_placeholder">选择一个标题</string>
+    <string name="content_placeholder">输入内容</string>
+    <string name="AddEditNote_error">至少需要填写一个字段</string>
+    <!-- Buttons -->
+    <string name="add_note">添加笔记</string>
+    <string name="sort_notes">排序笔记</string>
+    <string name="save_note">保存笔记</string>
+</resources>

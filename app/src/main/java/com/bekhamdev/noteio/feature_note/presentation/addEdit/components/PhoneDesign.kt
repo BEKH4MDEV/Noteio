@@ -38,10 +38,12 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.bekhamdev.noteio.R
 import com.bekhamdev.noteio.core.feature_note.domain.util.noteColors
 import com.bekhamdev.noteio.ui.theme.surfaceBrightDark
 
@@ -107,7 +109,7 @@ fun PhoneDesign(
             val keyboardController = LocalSoftwareKeyboardController.current
             TransparentHintTextField(
                 text = title,
-                hint = "Choose a title",
+                hint = stringResource(id = R.string.title_placeholder),
                 onTextChange = onTitleChange,
                 singleLine = true,
                 textStyle = MaterialTheme.typography.headlineLarge.copy(
@@ -125,7 +127,7 @@ fun PhoneDesign(
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
                 text = content,
-                hint = "Enter some content...",
+                hint = stringResource(id = R.string.content_placeholder) + "...",
                 onTextChange = onContentChange,
                 textStyle = MaterialTheme.typography.titleLarge.copy(
                     color = surfaceBrightDark.copy(

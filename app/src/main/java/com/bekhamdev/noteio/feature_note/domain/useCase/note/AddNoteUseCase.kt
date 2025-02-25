@@ -1,5 +1,6 @@
 package com.bekhamdev.noteio.feature_note.domain.useCase.note
 
+import com.bekhamdev.noteio.R
 import com.bekhamdev.noteio.core.feature_note.domain.util.Result
 import com.bekhamdev.noteio.feature_note.domain.model.Note
 import com.bekhamdev.noteio.feature_note.domain.repository.NoteRepository
@@ -8,7 +9,7 @@ import javax.inject.Inject
 class AddNoteUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
-    suspend operator fun invoke(note: Note): Result<Long, String> {
+    suspend operator fun invoke(note: Note): Result<Long, Int> {
         val title = note.title.trim { it.isWhitespace() }
         val content = note.content.trim { it.isWhitespace() }
 
@@ -18,7 +19,7 @@ class AddNoteUseCase @Inject constructor(
                 content = content
             )))
         } else {
-            Result.Error("At least one field must contain content")
+            Result.Error(R.string.AddEditNote_error)
         }
     }
 }

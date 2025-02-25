@@ -18,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.bekhamdev.noteio.R
 import com.bekhamdev.noteio.core.feature_note.domain.util.NoteOrder
 import com.bekhamdev.noteio.core.feature_note.domain.util.OrderType
 
@@ -62,7 +64,7 @@ fun OrderSection(
                             )
                         )
                         Text(
-                            "Title",
+                            text = stringResource(R.string.sort_by_title),
                             modifier = Modifier.padding(start = 12.dp),
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer
@@ -71,8 +73,10 @@ fun OrderSection(
                     }
                 },
                 onClick = {
-                    onOrderChange(NoteOrder.Title(noteOrder.currentOrderType()))
-                    onExpandedChange(false)
+                    if (noteOrder !is NoteOrder.Title) {
+                        onOrderChange(NoteOrder.Title(noteOrder.currentOrderType()))
+                        onExpandedChange(false)
+                    }
                 }
             )
 
@@ -88,7 +92,7 @@ fun OrderSection(
                             )
                         )
                         Text(
-                            "Date",
+                            stringResource(R.string.sort_by_date),
                             modifier = Modifier.padding(start = 12.dp),
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer
@@ -97,10 +101,12 @@ fun OrderSection(
                     }
                 },
                 onClick = {
-                    onOrderChange(
-                        NoteOrder.Date(noteOrder.currentOrderType())
-                    )
-                    onExpandedChange(false)
+                    if (noteOrder !is NoteOrder.Date) {
+                        onOrderChange(
+                            NoteOrder.Date(noteOrder.currentOrderType())
+                        )
+                        onExpandedChange(false)
+                    }
                 }
             )
 
@@ -116,7 +122,7 @@ fun OrderSection(
                             )
                         )
                         Text(
-                            "Color", modifier = Modifier.padding(start = 12.dp),
+                            stringResource(R.string.sort_by_color), modifier = Modifier.padding(start = 12.dp),
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
@@ -124,8 +130,10 @@ fun OrderSection(
                     }
                 },
                 onClick = {
-                    onOrderChange(NoteOrder.Color(noteOrder.currentOrderType()))
-                    onExpandedChange(false)
+                    if (noteOrder !is NoteOrder.Color) {
+                        onOrderChange(NoteOrder.Color(noteOrder.currentOrderType()))
+                        onExpandedChange(false)
+                    }
                 }
             )
 
@@ -144,7 +152,7 @@ fun OrderSection(
                             )
                         )
                         Text(
-                            "Ascending", modifier = Modifier.padding(start = 12.dp),
+                            stringResource(R.string.order_by_ascending), modifier = Modifier.padding(start = 12.dp),
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
@@ -152,8 +160,10 @@ fun OrderSection(
                     }
                 },
                 onClick = {
-                    onOrderChange(noteOrder.copyWithOrderType(OrderType.Ascending))
-                    onExpandedChange(false)
+                    if (noteOrder.currentOrderType() != OrderType.Ascending) {
+                        onOrderChange(noteOrder.copyWithOrderType(OrderType.Ascending))
+                        onExpandedChange(false)
+                    }
                 }
             )
 
@@ -169,7 +179,7 @@ fun OrderSection(
                             )
                         )
                         Text(
-                            "Descending", modifier = Modifier.padding(start = 12.dp),
+                            stringResource(R.string.order_by_descending), modifier = Modifier.padding(start = 12.dp),
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
@@ -177,8 +187,10 @@ fun OrderSection(
                     }
                 },
                 onClick = {
-                    onOrderChange(noteOrder.copyWithOrderType(OrderType.Descending))
-                    onExpandedChange(false)
+                    if (noteOrder.currentOrderType() != OrderType.Descending) {
+                        onOrderChange(noteOrder.copyWithOrderType(OrderType.Descending))
+                        onExpandedChange(false)
+                    }
                 }
             )
         }

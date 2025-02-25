@@ -31,11 +31,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import com.bekhamdev.noteio.R
 import com.bekhamdev.noteio.core.feature_note.presentation.util.ExitType
 import com.bekhamdev.noteio.core.feature_note.presentation.util.getInsetsData
 import com.bekhamdev.noteio.feature_note.presentation.addEdit.components.PhoneDesign
@@ -101,7 +103,7 @@ fun AddEditScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Save,
-                    contentDescription = "Save note"
+                    contentDescription = stringResource(R.string.save_note)
                 )
             }
         },

@@ -42,9 +42,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.bekhamdev.noteio.R
 import com.bekhamdev.noteio.core.feature_note.presentation.util.getInsetsData
 import com.bekhamdev.noteio.feature_note.presentation.notes.components.NoteItem
 import com.bekhamdev.noteio.feature_note.presentation.notes.components.OrderSection
@@ -60,6 +62,10 @@ fun NotesScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val insets = getInsetsData()
+    val title = stringResource(R.string.home_title)
+    val noteDeleted = stringResource(R.string.home_note_deleted)
+    val noteRestoreAction = stringResource(R.string.home_note_restore_action)
+    val noNotesFound = stringResource(R.string.home_no_notes)
 
     Scaffold(
         floatingActionButton = {
@@ -76,7 +82,7 @@ fun NotesScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add note"
+                    contentDescription = stringResource(id = R.string.add_note)
                 )
             }
         },
@@ -126,7 +132,7 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your Notes",
+                    text = title,
                     style = MaterialTheme.typography.headlineLarge.copy(
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
                         fontWeight = FontWeight.Bold
@@ -139,7 +145,7 @@ fun NotesScreen(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.Sort,
-                        contentDescription = "Sort",
+                        contentDescription = stringResource(R.string.sort_notes),
                         tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
@@ -169,7 +175,7 @@ fun NotesScreen(
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = "No notes found",
+                                    text = noNotesFound,
                                     style = MaterialTheme.typography.headlineLarge.copy(
                                         color = MaterialTheme.colorScheme.onPrimaryContainer
                                     )
@@ -179,6 +185,7 @@ fun NotesScreen(
                         }
                     }
                 }
+
                 itemsIndexed(state.notes, key = { _, note -> note.id }) { index, note ->
                     NoteItem(
                         note = note,
@@ -192,8 +199,8 @@ fun NotesScreen(
                             scope.launch {
                                 snackbarHostState.currentSnackbarData?.dismiss()
                                 val result = snackbarHostState.showSnackbar(
-                                    message = "Note deleted",
-                                    actionLabel = "Undo",
+                                    message = noteDeleted,
+                                    actionLabel = noteRestoreAction,
                                     duration = SnackbarDuration.Short
                                 )
                                 if (result == SnackbarResult.ActionPerformed) {

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Noteio</string>
+    <!-- Home -->
+    <string name="home_title">ملاحظاتك</string>
+    <string name="home_no_notes">لم يتم العثور على ملاحظات</string>
+    <string name="home_note_deleted">تم حذف الملاحظة</string>
+    <string name="home_note_restore_action">تراجع</string>
+    <!-- Sort By -->
+    <string name="sort_by_title">العنوان</string>
+    <string name="sort_by_date">التاريخ</string>
+    <string name="sort_by_color">اللون</string>
+    <!-- Order By -->
+    <string name="order_by_ascending">تصاعدي</string>
+    <string name="order_by_descending">تنازلي</string>
+    <!-- AddEditNote -->
+    <string name="title_placeholder">اختر عنوانًا</string>
+    <string name="content_placeholder">أدخل بعض المحتوى</string>
+    <string name="AddEditNote_error">مطلوب إدخال حقل واحد على الأقل</string>
+    <!-- Buttons -->
+    <string name="add_note">إضافة ملاحظة</string>
+    <string name="sort_notes">فرز الملاحظات</string>
+    <string name="save_note">حفظ الملاحظة</string>
+</resources>
