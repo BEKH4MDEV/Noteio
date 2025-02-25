@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.bekhamdev.noteio.core.feature_note.domain.util.NoteOrder
@@ -51,20 +50,6 @@ fun OrderSection(
             ),
             scrollState = rememberScrollState(),
         ) {
-            DropdownMenuItem(
-                text = {
-                    Text(
-                        "Sort By",
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.outline
-                        )
-                    )
-                },
-                onClick = {},
-                enabled = false
-            )
-
             DropdownMenuItem(
                 text = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -144,22 +129,9 @@ fun OrderSection(
                 }
             )
 
-            HorizontalDivider(color = MaterialTheme.colorScheme.outline)
-
-            DropdownMenuItem(
-                text = {
-                    Text(
-                        text = "Order",
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.outline
-                        )
-                    )
-                },
-                onClick = {},
-                enabled = false
-            )
-
+            HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(
+                alpha = .5f
+            ))
             DropdownMenuItem(
                 text = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
