@@ -56,7 +56,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.ui.text.google.fonts)
-    testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -82,4 +83,26 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     //Window Size Class
     implementation(libs.compose.material3.window.size)
+    //Local unit tests
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.mockk)
+    debugImplementation(libs.ui.test.manifest)
+
+    // Instrument tests
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.core.ktx)
+    androidTestImplementation(libs.mockwebserver)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.androidx.runner)
 }
