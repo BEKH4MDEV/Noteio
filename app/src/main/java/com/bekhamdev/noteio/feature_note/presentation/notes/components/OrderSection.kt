@@ -137,7 +137,7 @@ fun OrderSection(
                 }
             )
 
-            HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(
+            HorizontalDivider(color = MaterialTheme.colorScheme.onSecondaryContainer.copy(
                 alpha = .5f
             ))
             DropdownMenuItem(
