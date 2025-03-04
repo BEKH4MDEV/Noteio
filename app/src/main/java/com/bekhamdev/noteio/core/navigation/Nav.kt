@@ -3,8 +3,6 @@ package com.bekhamdev.noteio.core.navigation
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,19 +34,11 @@ fun Nav(
         navController = navController,
         startDestination = Route.NotesScreen,
         enterTransition = {
-            scaleIn(
-                initialScale = 0.95f,
-                animationSpec = tween(300)
-            ) + fadeIn(animationSpec = tween(300))
+            fadeIn(tween(200))
         },
         exitTransition = {
-            scaleOut(
-                targetScale = 1.05f,
-                animationSpec = tween(300)
-            ) + fadeOut(animationSpec = tween(300))
+           fadeOut(animationSpec = tween(200))
         }
-
-
     ) {
         composable<Route.NotesScreen> {
             NotesScreen(
